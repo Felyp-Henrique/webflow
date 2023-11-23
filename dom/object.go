@@ -9,8 +9,10 @@ type Object struct {
 // Find one element by selector.
 //
 // @see https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector
-func (o *Object) Get(selector string) {
-	o.value.Call("querySelector", selector)
+func (o *Object) Get(selector string) *Object {
+	return &Object{
+		value: o.value.Call("querySelector", selector),
+	}
 }
 
 // Find some elements by selector.
@@ -32,4 +34,8 @@ func (o *Object) Add(object Object) {
 // @see https://developer.mozilla.org/en-US/docs/Web/API/Element/remove
 func (o *Object) Remove(object Object) {
 	o.value.Call("remove", object.value)
+}
+
+func (o *Object) GetValue() js.Value {
+	return o.value
 }

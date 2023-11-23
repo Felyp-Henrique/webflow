@@ -1,5 +1,7 @@
 package components
 
+import "Felyp-Henrique/webflow/dom"
+
 type Component interface {
-	Render() string
+	Render() *dom.Element
 }
