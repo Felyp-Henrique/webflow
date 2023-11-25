@@ -15,7 +15,7 @@ const golang = new Go();
 WebAssembly.instantiateStreaming(fetch("teste.wasm"), golang.importObject).then((result) => {
     golang.run(result.instance);
 
-    WebflowApp();
+    App();
 });
 </script>
 </html>
