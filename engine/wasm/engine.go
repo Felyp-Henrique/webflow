@@ -27,7 +27,7 @@ func (e *Engine) ActionInlineCreate(el string) engine.ElementHandler {
 	return e.Factory().Create(el)
 }
 
-func (e *Engine) ActionBlockCreate(el string, scope engine.ActionScope) engine.ElementHandler {
+func (e *Engine) ActionBlockCreate(el string, scope engine.Scope) engine.ElementHandler {
 	var (
 		elementParent engine.ElementHandler = e._handler.Peek()
 		elementNew    engine.ElementHandler = e.Factory().CreateChild(elementParent, el)

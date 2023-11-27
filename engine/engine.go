@@ -1,13 +1,13 @@
 package engine
 
-type ActionScope = func(ElementHandler)
+type Scope = func(ElementHandler)
 
 type Engine interface {
 	Factory() ElementFactory
 	Handler() ElementHandler
 	Window() WindowHandler
 	ActionInlineCreate(string) ElementHandler
-	ActionBlockCreate(string, ActionScope) ElementHandler
+	ActionBlockCreate(string, Scope) ElementHandler
 }
 
 type ElementHandler interface {

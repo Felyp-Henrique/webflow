@@ -1,30 +1,37 @@
 package main
 
 import (
-	w "Felyp-Henrique/webflow"
-	e "Felyp-Henrique/webflow/engine"
+	"Felyp-Henrique/webflow"
+	"Felyp-Henrique/webflow/elements/box"
+	"Felyp-Henrique/webflow/elements/btn"
+	"Felyp-Henrique/webflow/elements/txt"
+	"Felyp-Henrique/webflow/engine"
 	"Felyp-Henrique/webflow/engine/wasm"
 )
 
 func main() {
 	engine := wasm.New()
-	webflow := w.NewWebflow(engine)
+	webflow := webflow.NewWebflow(engine)
 	webflow.Start(App)
 }
 
-func App(ctx *w.Context) {
+func App(ctx *webflow.Context) {
 	HelloComponent(ctx)
 }
 
-func HelloComponent(ctx *w.Context) {
-	w.Container(ctx, func(eh e.ElementHandler) {
+func HelloComponent(ctx *webflow.Context) {
+	box.Container(ctx, func(eh engine.ElementHandler) {
 		eh.SetId("")
 		eh.SetClass("")
 
-		w.Text(ctx, "Hello World!")
+		txt.Text(ctx, "Hello World!")
 
-		w.Button(ctx, "Alert", func() {
-			ctx.Window().Alert("Hello World!")
+		box.El(ctx, "section", func(eh engine.ElementHandler) {
+			txt.El(ctx, "span", "icon_smile")
+
+			btn.Button(ctx, "Click to Hello!", func() {
+				ctx.Window().Alert("Hello World!")
+			})
 		})
 	})
 }
