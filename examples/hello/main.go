@@ -2,9 +2,7 @@ package main
 
 import (
 	"Felyp-Henrique/webflow"
-	"Felyp-Henrique/webflow/elements/box"
-	"Felyp-Henrique/webflow/elements/btn"
-	"Felyp-Henrique/webflow/elements/txt"
+	"Felyp-Henrique/webflow/els"
 	"Felyp-Henrique/webflow/engine"
 	"Felyp-Henrique/webflow/engine/wasm"
 )
@@ -20,16 +18,15 @@ func App(ctx *webflow.Context) {
 }
 
 func HelloComponent(ctx *webflow.Context) {
-	box.Container(ctx, func(eh engine.ElementHandler) {
-		eh.SetId("")
-		eh.SetClass("")
+	els.Section(ctx, func(eh engine.ElementHandler) {
+		els.Title(ctx, els.Title1, "Hello World!")
 
-		txt.Text(ctx, "Hello World!")
+		els.Text(ctx, "Hello World!")
 
-		box.El(ctx, "section", func(eh engine.ElementHandler) {
-			txt.El(ctx, "span", "icon_smile")
+		els.Container(ctx, func(eh engine.ElementHandler) {
+			els.Span(ctx, "icon_smile")
 
-			btn.Button(ctx, "Click to Hello!", func() {
+			els.Button(ctx, "Click to Hello!", func() {
 				ctx.Window().Alert("Hello World!")
 			})
 		})
